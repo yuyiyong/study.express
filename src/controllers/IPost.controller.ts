@@ -2,6 +2,8 @@ import { IController } from "./../interface/IController.interface";
 import { Router, Request, Response, NextFunction as NF } from "express";
 import { AController } from "../abstract/AController.abstract";
 import PostModel from "../model/Post.model";
+import validateDTOMiddleware from "../middleware/validateDTO.middleware";
+import PostDTO from "./DTO/PostDTO.dto";
 // 做为示范的post控制器
 
 export class PostController extends AController implements IController {
@@ -22,9 +24,14 @@ export class PostController extends AController implements IController {
   }
   //http://localhost:3000/api/posts
   private attachToRoutes() {
+    // 注意只在这个路由上用了，
     const path = this.path;
     this.router.get(path, this.getPosts);
-    this.router.post(`${path}/add`, this.addPost);
+    this.router.post(
+      `${path}/add`,
+      validateDTOMiddleware(PostDTO),
+      this.addPost
+    );
     this.router.delete(`${path}/delete/:id`, this.deletePostById);
     this.router.put(`${path}/update/:id`, this.updatePost);
     this.router.get(`${path}/get/:id`, this.getPostById);

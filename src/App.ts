@@ -1,9 +1,9 @@
 // 类似 const server = new App();
 
-import * as express from "express";
+import  express from "express";
 import { Application } from "express";
 import { IController } from "./interface/IController.interface";
-import * as mongoose from "mongoose";
+import  mongoose from "mongoose";
 import errorHandler from "./middleware/errorhandler.middleware";
 export class App {
   // 端口 + web 服务器实例

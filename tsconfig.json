@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "target": "es2016",
+    // "lib": ["ES2015"],
+    "outDir": "dist",
+    "baseUrl": "./src",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "experimentalDecorators": true
+    // "module": "commonjs",
+    // "strict": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+
+// !因为class-validator 要使用到装饰器，所以把 experimentalDecorators 打开
+// ! esModuleInterop 选项，作用就是让 import * as express from "exprss" 可以变成 import express from "express"
+// ! 忘了，还得介绍一个，moduleResolution， 有些用JavaScript写的库，用ts默认的模块解析算法找不到，（比如dotenv） 换成node 就能找到
